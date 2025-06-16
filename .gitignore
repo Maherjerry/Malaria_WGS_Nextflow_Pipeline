@@ -1,0 +1,9 @@
+﻿.nextflow/
+.nextflow.log*
+work/
+results/
+*.gz
+.DS_Store
+data/
+.nextflow_cache/
+trace/
