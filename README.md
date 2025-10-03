@@ -34,7 +34,15 @@ This pipeline performs comprehensive analysis of Plasmodium falciparum Whole Gen
 
 ### Prerequisites
 
-#### Required Software
+#### Option 1: Docker (Recommended)
+- [Docker](https://docs.docker.com/get-docker/) (>=20.10)
+- [Nextflow](https://www.nextflow.io/) (>=24.10)
+- [Java](https://www.oracle.com/java/technologies/downloads/) (>=11) - Required for Nextflow
+
+**That's it!** All bioinformatics tools will run in containers automatically.
+
+#### Option 2: Local Installation
+If not using Docker, install all these tools locally:
 - [Nextflow](https://www.nextflow.io/) (>=24.10)
 - [Java](https://www.oracle.com/java/technologies/downloads/) (>=11)
 - [GATK4](https://github.com/broadinstitute/gatk/releases) (>=4.2.0)
@@ -56,7 +64,26 @@ This pipeline performs comprehensive analysis of Plasmodium falciparum Whole Gen
 
 ### Quick Installation
 
-#### Using Conda/Mamba (Recommended)
+#### Using Docker (Recommended - No Local Installation Required!)
+```bash
+# Install Docker (if not already installed)
+# See https://docs.docker.com/get-docker/
+
+# Install Nextflow only
+curl -s https://get.nextflow.io | bash
+mv nextflow ~/bin/
+
+# Run the pipeline with Docker - all tools run in containers!
+nextflow run nf_test.nf -profile docker --readDIR /path/to/fastq --outDIR results
+```
+
+**Advantages of Docker:**
+- ✅ No need to install bioinformatics tools locally
+- ✅ Guaranteed reproducibility across systems
+- ✅ Automatic container pulling and caching
+- ✅ Isolated environments prevent conflicts
+
+#### Using Conda/Mamba
 ```bash
 # Create environment with all dependencies
 conda create -n pf-wgs-pipeline -c bioconda -c conda-forge nextflow=24.10 gatk4 bwa fastqc multiqc trim-galore samtools bcftools vcftools r-ggplot2 r-dplyr r-tidyr r-knitr r-rmarkdown pandoc
@@ -140,6 +167,14 @@ nextflow run nf_test.nf \
 ```bash
 nextflow run nf_test.nf \
     -profile cluster \
+    --readDIR /path/to/fastq \
+    --outDIR /path/to/results
+```
+
+#### Using Docker
+```bash
+nextflow run nf_test.nf \
+    -profile docker \
     --readDIR /path/to/fastq \
     --outDIR /path/to/results
 ```
