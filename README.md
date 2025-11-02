@@ -9,6 +9,7 @@ A Nextflow pipeline for processing Whole Genome Sequencing (WGS) data from the m
 ## Overview
 
 This pipeline performs comprehensive analysis of Plasmodium falciparum Whole Genome Sequencing data, following industry-standard best practices. It's designed to be user-friendly while maintaining high-quality results for both small and large-scale sequencing projects, with optimizations specific to P. falciparum genomics.
+![Overview Diagram](images/Untitled Diagram3.jpg)
 
 ### Key Features
 - 🔄 Complete end-to-end processing from FASTQ to filtered VCF
